@@ -16,7 +16,9 @@
 #      map
 #        { "INSIDE_DUNE" :
 #            "/mnt/c/Users/andy8/Desktop/Compiler_Course/Assignments/HW1/arithc/arithc/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
 #        }
 #  ; instrument_with = []
 #  }
-$ /usr/bin/ocamlc.opt -config > /tmp/dune_32b528_output
+$ /usr/bin/ocamlc.opt -config > /tmp/dune_cbcf38_output

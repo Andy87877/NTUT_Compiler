@@ -33,8 +33,19 @@ let compile_expr =
         pushq (imm i)
     | Var x ->
         nop (* to be completed *)
-    | Binop (o, e1, e2)->
-        nop (* to be completed *)
+    | Binop (o, e1, e2) ->
+        let op = match o with
+          | Add -> addq !%rbx !%rax
+          | Sub -> subq !%rbx !%rax
+          | Mul -> imulq !%rbx !%rax
+          | Div -> cqto ++ idivq !%rbx
+        in
+        comprec env next e1 ++
+        comprec env next e2 ++
+        popq rbx ++
+        popq rax ++
+        op ++
+        pushq !%rax
     | Letin (x, e1, e2) ->
         if !frame_size = next then frame_size := 8 + !frame_size;
         nop (* to be completed *)
