@@ -30,8 +30,10 @@ let compile_expr =
      on top of the stack *)
   let rec comprec env next = function
     | Cst i ->
+        (* to be completed *)
         pushq (imm i)
     | Var x ->
+        (* to be completed *)
         begin try
           let ofs = StrMap.find x env in
           pushq (ind ~ofs rbp)
@@ -42,6 +44,7 @@ let compile_expr =
             raise (VarUndef x)
         end
     | Binop (o, e1, e2) ->
+        (* to be completed *)
         let op = match o with
           | Add -> addq !%rbx !%rax
           | Sub -> subq !%rbx !%rax
@@ -55,6 +58,7 @@ let compile_expr =
         op ++
         pushq !%rax
     | Letin (x, e1, e2) ->
+        (* to be completed *)
         if !frame_size = next then frame_size := 8 + !frame_size;
         let ofs = - (next + 8) in
         comprec env next e1 ++
@@ -67,10 +71,12 @@ let compile_expr =
 (* Compilation of an instruction *)
 let compile_instr = function
   | Set (x, e) ->
+      (* to be completed *)
       let c = compile_expr e in
       Hashtbl.replace genv x ();
       c ++ popq rax ++ movq !%rax (lab x)
   | Print e ->
+      (* to be completed *)
       compile_expr e ++
       popq rdi ++
       call "print_int"
@@ -84,6 +90,7 @@ let compile_program p ofile =
   let p =
     { text =
         globl "main" ++ label "main" ++
+        (* to be completed *)
         pushq !%rbp ++
         movq !%rsp !%rbp ++
         subq (imm !frame_size) !%rsp ++
@@ -92,6 +99,7 @@ let compile_program p ofile =
         popq rbp ++
         movq (imm 0) !%rax ++
         ret ++
+        (* to be completed *)
         label "print_int" ++
         pushq !%rbp ++ (* ensure proper alignment *)
         movq !%rdi !%rsi ++
