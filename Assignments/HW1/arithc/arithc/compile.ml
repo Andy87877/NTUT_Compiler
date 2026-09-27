@@ -56,7 +56,11 @@ let compile_expr =
         pushq !%rax
     | Letin (x, e1, e2) ->
         if !frame_size = next then frame_size := 8 + !frame_size;
-        nop (* to be completed *)
+        let ofs = - (next + 8) in
+        comprec env next e1 ++
+        popq rax ++
+        movq !%rax (ind ~ofs rbp) ++
+        comprec (StrMap.add x ofs env) (next + 8) e2
   in
   comprec StrMap.empty 0
 

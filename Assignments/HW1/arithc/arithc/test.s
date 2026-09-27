@@ -3,7 +3,47 @@
 main:
 	pushq %rbp
 	movq %rsp, %rbp
-	subq $0, %rsp
+	subq $16, %rsp
+	pushq $10
+	popq %rax
+	movq %rax, -8(%rbp)
+	pushq -8(%rbp)
+	pushq $20
+	popq %rax
+	movq %rax, -8(%rbp)
+	pushq $30
+	popq %rax
+	movq %rax, -16(%rbp)
+	pushq -8(%rbp)
+	pushq -16(%rbp)
+	popq %rbx
+	popq %rax
+	addq %rbx, %rax
+	pushq %rax
+	popq %rbx
+	popq %rax
+	addq %rbx, %rax
+	pushq %rax
+	popq %rdi
+	call print_int
+	pushq $100
+	pushq $2
+	popq %rbx
+	popq %rax
+	cqto
+	idivq %rbx
+	pushq %rax
+	popq %rdi
+	call print_int
+	pushq $2
+	pushq $100
+	popq %rbx
+	popq %rax
+	cqto
+	idivq %rbx
+	pushq %rax
+	popq %rdi
+	call print_int
 	pushq $10
 	popq %rax
 	movq %rax, x
@@ -32,6 +72,28 @@ main:
 	pushq y
 	popq %rdi
 	call print_int
+	pushq $10
+	popq %rax
+	movq %rax, -8(%rbp)
+	pushq -8(%rbp)
+	pushq $20
+	popq %rax
+	movq %rax, -8(%rbp)
+	pushq $30
+	popq %rax
+	movq %rax, -16(%rbp)
+	pushq -8(%rbp)
+	pushq -16(%rbp)
+	popq %rbx
+	popq %rax
+	addq %rbx, %rax
+	pushq %rax
+	popq %rbx
+	popq %rax
+	addq %rbx, %rax
+	pushq %rax
+	popq %rdi
+	call print_int
 	pushq $20
 	popq %rax
 	movq %rax, x
@@ -39,7 +101,10 @@ main:
 	popq %rdi
 	call print_int
 	pushq x
-	pushq $5
+	pushq $3
+	popq %rax
+	movq %rax, -8(%rbp)
+	pushq -8(%rbp)
 	popq %rbx
 	popq %rax
 	addq %rbx, %rax
