@@ -1,0 +1,22 @@
+type token =
+    TIMES
+  | SET
+  | RP
+  | PRINT
+  | PLUS
+  | MINUS
+  | LP
+  | LET
+  | IN
+  | IDENT of string
+  | EQ
+  | EOF
+  | DIV
+  | CST of int
+val menhir_begin_marker : int
+val xv_stmts : Ast.stmt list
+val xv_stmt : Ast.stmt
+val xv_prog : Ast.program
+val xv_op : Ast.binop
+val xv_expr : Ast.expr
+val menhir_end_marker : int
