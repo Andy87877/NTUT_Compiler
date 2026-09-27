@@ -1,6 +1,8 @@
-print 4 + 6
-print 21 * 2
-print 100 / 2
-print 2 / 100
-print 3 - 6 * (10 / 5)
-print -5 + 2
+set x = 10
+print x
+set y = x * (x + 1) / 2
+print y
+set x = 20
+print x
+set x = x + 5 + x
+print x

@@ -32,7 +32,15 @@ let compile_expr =
     | Cst i ->
         pushq (imm i)
     | Var x ->
-        nop (* to be completed *)
+        begin try
+          let ofs = StrMap.find x env in
+          pushq (ind ~ofs rbp)
+        with Not_found ->
+          if Hashtbl.mem genv x then
+            pushq (lab x)
+          else
+            raise (VarUndef x)
+        end
     | Binop (o, e1, e2) ->
         let op = match o with
           | Add -> addq !%rbx !%rax
@@ -55,7 +63,9 @@ let compile_expr =
 (* Compilation of an instruction *)
 let compile_instr = function
   | Set (x, e) ->
-      nop (* to be completed *)
+      let c = compile_expr e in
+      Hashtbl.replace genv x ();
+      c ++ popq rax ++ movq !%rax (lab x)
   | Print e ->
       compile_expr e ++
       popq rdi ++

@@ -4,70 +4,54 @@ main:
 	pushq %rbp
 	movq %rsp, %rbp
 	subq $0, %rsp
-	pushq $4
-	pushq $6
-	popq %rbx
-	popq %rax
-	addq %rbx, %rax
-	pushq %rax
-	popq %rdi
-	call print_int
-	pushq $21
-	pushq $2
-	popq %rbx
-	popq %rax
-	imulq %rbx, %rax
-	pushq %rax
-	popq %rdi
-	call print_int
-	pushq $100
-	pushq $2
-	popq %rbx
-	popq %rax
-	cqto
-	idivq %rbx
-	pushq %rax
-	popq %rdi
-	call print_int
-	pushq $2
-	pushq $100
-	popq %rbx
-	popq %rax
-	cqto
-	idivq %rbx
-	pushq %rax
-	popq %rdi
-	call print_int
-	pushq $3
-	pushq $6
 	pushq $10
-	pushq $5
+	popq %rax
+	movq %rax, x
+	pushq x
+	popq %rdi
+	call print_int
+	pushq x
+	pushq x
+	pushq $1
 	popq %rbx
 	popq %rax
-	cqto
-	idivq %rbx
+	addq %rbx, %rax
 	pushq %rax
 	popq %rbx
 	popq %rax
 	imulq %rbx, %rax
 	pushq %rax
+	pushq $2
 	popq %rbx
 	popq %rax
-	subq %rbx, %rax
+	cqto
+	idivq %rbx
 	pushq %rax
+	popq %rax
+	movq %rax, y
+	pushq y
 	popq %rdi
 	call print_int
-	pushq $0
-	pushq $5
-	popq %rbx
+	pushq $20
 	popq %rax
-	subq %rbx, %rax
-	pushq %rax
-	pushq $2
+	movq %rax, x
+	pushq x
+	popq %rdi
+	call print_int
+	pushq x
+	pushq $5
 	popq %rbx
 	popq %rax
 	addq %rbx, %rax
 	pushq %rax
+	pushq x
+	popq %rbx
+	popq %rax
+	addq %rbx, %rax
+	pushq %rax
+	popq %rax
+	movq %rax, x
+	pushq x
 	popq %rdi
 	call print_int
 	movq %rbp, %rsp
@@ -83,5 +67,9 @@ print_int:
 	popq %rbp
 	ret
 	.data
+x:
+	.quad 1
+y:
+	.quad 1
 .Sprint_int:
 	.string "%d\n"
