@@ -21,4 +21,32 @@
 #        }
 #  ; instrument_with = []
 #  }
-$ /usr/bin/ocamlc.opt -config > /tmp/dune_06ab1b_output
+$ /usr/bin/ocamlc.opt -config > /tmp/dune_4354fd_output
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -impl arithc.ml) > _build/default/.arithc.eobjs/arithc.impl.d
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -intf compile.mli) > _build/default/.arithc.eobjs/compile.intf.d
+$ (cd _build/default && /usr/bin/ocamllex -q -o lexer.ml lexer.mll)
+$ (cd _build/default && /usr/bin/menhir parser.mly --base parser --infer-write-query parser__mock.ml.mock)
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -impl lexer.ml) > _build/default/.arithc.eobjs/lexer.impl.d
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -impl ast.ml) > _build/default/.arithc.eobjs/ast.impl.d
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -impl parser__mock.ml.mock) > _build/default/.arithc.eobjs/parser__mock.impl.d
+$ (cd _build/default && /usr/bin/ocamlc.opt -g -bin-annot -I .arithc.eobjs/byte -no-alias-deps -opaque -o .arithc.eobjs/byte/ast.cmo -c -impl ast.ml)
+$ (cd _build/.sandbox/e55ddf5086244d7adf73df26b7398f8a/default && /usr/bin/ocamlc.opt -g -I .arithc.eobjs/byte -short-paths -i -impl parser__mock.ml.mock) > _build/.sandbox/e55ddf5086244d7adf73df26b7398f8a/default/parser__mock.mli.inferred
+$ (cd _build/default && /usr/bin/menhir parser.mly --base parser --infer-read-reply parser__mock.mli.inferred)
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -intf parser.mli) > _build/default/.arithc.eobjs/parser.intf.d
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -impl compile.ml) > _build/default/.arithc.eobjs/compile.impl.d
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -intf x86_64.mli) > _build/default/.arithc.eobjs/x86_64.intf.d
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -impl x86_64.ml) > _build/default/.arithc.eobjs/x86_64.impl.d
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -impl parser.ml) > _build/default/.arithc.eobjs/parser.impl.d
+$ (cd _build/default && /usr/bin/ocamlc.opt -g -bin-annot -I .arithc.eobjs/byte -no-alias-deps -opaque -o .arithc.eobjs/byte/compile.cmi -c -intf compile.mli)
+$ (cd _build/default && /usr/bin/ocamlc.opt -g -bin-annot -I .arithc.eobjs/byte -no-alias-deps -opaque -o .arithc.eobjs/byte/parser.cmi -c -intf parser.mli)
+$ (cd _build/default && /usr/bin/ocamlopt.opt -g -I .arithc.eobjs/byte -I .arithc.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -o .arithc.eobjs/native/ast.cmx -c -impl ast.ml)
+$ (cd _build/default && /usr/bin/ocamlc.opt -g -bin-annot -I .arithc.eobjs/byte -no-alias-deps -opaque -o .arithc.eobjs/byte/x86_64.cmi -c -intf x86_64.mli)
+$ (cd _build/default && /usr/bin/ocamlc.opt -g -bin-annot -I .arithc.eobjs/byte -no-alias-deps -opaque -o .arithc.eobjs/byte/lexer.cmo -c -impl lexer.ml)
+$ (cd _build/default && /usr/bin/ocamlc.opt -g -bin-annot -I .arithc.eobjs/byte -no-alias-deps -opaque -o .arithc.eobjs/byte/arithc.cmo -c -impl arithc.ml)
+$ (cd _build/default && /usr/bin/ocamlopt.opt -g -I .arithc.eobjs/byte -I .arithc.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -o .arithc.eobjs/native/lexer.cmx -c -impl lexer.ml)
+$ (cd _build/default && /usr/bin/ocamlopt.opt -g -I .arithc.eobjs/byte -I .arithc.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -o .arithc.eobjs/native/compile.cmx -c -impl compile.ml)
+$ (cd _build/default && /usr/bin/ocamlopt.opt -g -I .arithc.eobjs/byte -I .arithc.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -o .arithc.eobjs/native/parser.cmx -c -impl parser.ml)
+$ (cd _build/default && /usr/bin/ocamlopt.opt -g -I .arithc.eobjs/byte -I .arithc.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -o .arithc.eobjs/native/arithc.cmx -c -impl arithc.ml)
+$ (cd _build/default && /usr/bin/ocamlopt.opt -g -I .arithc.eobjs/byte -I .arithc.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -o .arithc.eobjs/native/x86_64.cmx -c -impl x86_64.ml)
+$ (cd _build/default && /usr/bin/ocamlopt.opt -g -o arithc.exe .arithc.eobjs/native/ast.cmx .arithc.eobjs/native/x86_64.cmx .arithc.eobjs/native/compile.cmx .arithc.eobjs/native/parser.cmx .arithc.eobjs/native/lexer.cmx .arithc.eobjs/native/arithc.cmx)
+# Promoting "_build/default/arithc.exe" to "arithc.exe"
